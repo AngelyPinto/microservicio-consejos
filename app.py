@@ -4,8 +4,7 @@ import os
 
 app = Flask(__name__)
 
-# La direccion de conexion a MongoDB Atlas se guarda como variable de entorno
-# (no se escribe aqui directamente por seguridad)
+
 MONGO_URI = os.environ.get('MONGO_URI')
 
 cliente = MongoClient(MONGO_URI)
@@ -26,4 +25,5 @@ def obtener_consejos():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    puerto = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=puerto)
